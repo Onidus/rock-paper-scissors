@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock Paper Scissors</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <h1>press f12 and go to console, let's play Rock Paper Scissors</h1>
+    <script>
+        
+        const plays = ["Rock", "Paper", "Scissors"];
+
+        function capitalize(string){
+        string = string.toLowerCase();
+        string = string.charAt(0).toUpperCase() + string.substring(1, string.length);
+        return string;
+        }
+
+        function computerPlay(){
+            return plays[(Math.floor(Math.random() * plays.length))];
+        }
+
+        function playToNumber(string){
+            switch(string){
+                case 'Rock':
+                return Number(0);
+                break;
+                case 'Paper':
+                return Number(1);
+                break;
+                case 'Scissors':
+                return Number(2);
+                break;
+            }
+        }
+
+
+
+
+        function game(){
+            function playRound(playerSelection, computerSelection){
+                playerSelection = capitalize(playerSelection);
+
+                
+
+                if (playToNumber(playerSelection) == playToNumber(computerSelection)){
+                    return `It's a draw! You both played ${playerSelection}.`
+                } 
+                else if (playToNumber(playerSelection) == 0 && playToNumber(computerSelection) == 2 || 
+                playToNumber(playerSelection) > playToNumber(computerSelection))
+                {
+                    playerWin++;
+                    return `You Win! ${playerSelection} beats ${computerSelection}.`
+                }
+                else {
+                    computerWin++;
+                    return `You Lose! ${computerSelection} beats ${playerSelection}.`
+
+                }
+            }   
+
+            let playerWin = 0;
+            let computerWin = 0;
+            for (i = 0; i < 5; i++){
+                const playerSelection = prompt("Rock, Paper, Scissors, one, two, three:");
+                const computerSelection = computerPlay();
+                console.log(playRound(playerSelection, computerSelection));
+                console.log(`Player: ${playerWin} Computer: ${computerWin}`);
+            }
+        }
+
+
+
+
+        game();
+    </script>
+</body>
